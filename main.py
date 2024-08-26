@@ -123,10 +123,9 @@ class InstaFollower:
                 cancel_button.click()     
 
 
-    #def chat(self):
-    #    self.driver
+    def openchat(self):
+        self.driver.get("https://www.instagram.com/direct/inbox/")
 
 bot = InstaFollower()
 bot.login()
-bot.find_followers("leomessi")
-bot.close_browser()
+bot.openchat()
