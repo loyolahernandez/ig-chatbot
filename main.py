@@ -34,7 +34,7 @@ urls = {
 }
 
 
-class InstaFollower:
+class InstaUser:
 
     def __init__(self):
         chrome_options = webdriver.ChromeOptions()
@@ -126,6 +126,6 @@ class InstaFollower:
     def openchat(self):
         self.driver.get("https://www.instagram.com/direct/inbox/")
 
-bot = InstaFollower()
+bot = InstaUser()
 bot.login()
 bot.openchat()
