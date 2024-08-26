@@ -44,6 +44,25 @@ class InstaUser:
     def close_browser(self):
         self.driver.close()
 
+    def handle_exceptions(self):
+        try:
+            # Click "Not now" and ignore Save-login info prompt
+            save_login_prompt = WebDriverWait(self.driver, MIN_TIME_LOAD).until(
+                EC.presence_of_element_located((By.XPATH, xpath["save_login_not_now_button"]))
+            )
+            save_login_prompt.click()
+        except:
+            pass
+
+        try:
+            # Click "not now" on notifications prompt
+            notifications_prompt = WebDriverWait(self.driver, MIN_TIME_LOAD).until(
+                EC.presence_of_element_located((By.XPATH, xpath["notification_not_now_button"]))
+            )
+            notifications_prompt.click()
+        except:
+            pass
+        
     def login(self):
         self.driver.get(urls["login"])
 
@@ -65,23 +84,8 @@ class InstaUser:
         WebDriverWait(self.driver, MIN_TIME_LOAD)
         password.send_keys(Keys.ENTER)
 
-        try:
-            # Click "Not now" and ignore Save-login info prompt
-            save_login_prompt = WebDriverWait(self.driver, MIN_TIME_LOAD).until(
-                EC.presence_of_element_located((By.XPATH, xpath["save_login_not_now_button"]))
-            )
-            save_login_prompt.click()
-        except:
-            pass
-
-        try:
-            # Click "not now" on notifications prompt
-            notifications_prompt = WebDriverWait(self.driver, MIN_TIME_LOAD).until(
-                EC.presence_of_element_located((By.XPATH, xpath["notification_not_now_button"]))
-            )
-            notifications_prompt.click()
-        except:
-            pass
+        self.handle_exceptions()
+        
 
     def like_to_post(self):
         self.driver.get(xpath["post"])
@@ -125,6 +129,7 @@ class InstaUser:
 
     def openchat(self):
         self.driver.get("https://www.instagram.com/direct/inbox/")
+        self.handle_exceptions()
 
 bot = InstaUser()
 bot.login()
