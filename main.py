@@ -21,6 +21,7 @@ xpath = {
     "like_button": "//*[@aria-label='Me gusta']",
     "modal": "/html/body/div[6]/div[1]/div/div[2]/div/div/div/div/div[2]/div/div/div[2]",
     "cancel_unfollow_button": "//button[contains(text(), 'Cancel')]",
+    "chat":"/html/body/div[2]/div/div/div[2]/div/div/div[1]/div[2]/div/div[2]/div/div/div/div/div[2]/div[5]/div/div/span/div/a/div"
 }
 
 css_selector = {
@@ -120,6 +121,10 @@ class InstaFollower:
             except ElementClickInterceptedException:
                 cancel_button = self.driver.find_element(by=By.XPATH, value=xpath["cancel_unfollow_button"])
                 cancel_button.click()     
+
+
+    #def chat(self):
+    #    self.driver
 
 bot = InstaFollower()
 bot.login()
